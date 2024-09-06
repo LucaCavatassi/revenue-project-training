@@ -7,10 +7,10 @@ export default function InputBox({sendDataToParent}) {
     // const [duration, setDuration] = useState();
 
     const [formInputs, setFormInputs] = useState({
-        initialInvestment: 0,
-        annualInvestment: 0,
-        expectedReturn: 0,
-        duration: 0 
+        initialInvestment: 10000,
+        annualInvestment: 300,
+        expectedReturn: 5.5,
+        duration: 12 
     });
 
     // console.log(formInputs);
@@ -19,7 +19,7 @@ export default function InputBox({sendDataToParent}) {
         const { id, value } = e.target;
         setFormInputs((prevFormInputs) => ({
             ...prevFormInputs,
-            [id]: value
+            [id]: +value
         }));
     };
 
@@ -32,21 +32,21 @@ export default function InputBox({sendDataToParent}) {
             <div className="input-group">
                 <p>
                     <label htmlFor="initialInvestment">Initial Investiments</label>
-                    <input type="number" placeholder="0" id="initialInvestment" value={formInputs.initialInvestment} onChange={handleInput} />
+                    <input type="number" placeholder="0" id="initialInvestment" value={formInputs.initialInvestment} onChange={handleInput} required />
                 </p>
                 <p>
                     <label htmlFor="annualInvestment">Annual Investiments</label>
-                    <input type="number" placeholder="0" id="annualInvestment" value={formInputs.annualInvestment} onChange={handleInput} />
+                    <input type="number" placeholder="0" id="annualInvestment" value={formInputs.annualInvestment} onChange={handleInput} required />
                 </p>
             </div>
             <div className="input-group">
                 <p>
                     <label htmlFor="expectedReturn">Expected Return</label>
-                    <input type="number" placeholder="0" id="expectedReturn" value={formInputs.expectedReturn} onChange={handleInput} />
+                    <input type="number" placeholder="0" id="expectedReturn" value={formInputs.expectedReturn} onChange={handleInput} required />
                 </p>
                 <p>
                     <label htmlFor="duration">Duration</label>
-                    <input type="number" placeholder="0" id="duration" value={formInputs.duration} onChange={handleInput} />
+                    <input type="number" placeholder="0" id="duration" value={formInputs.duration} onChange={handleInput} required />
                 </p>
             </div>
         </div>

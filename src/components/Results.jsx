@@ -4,16 +4,19 @@ import { calculateInvestmentResults, formatter } from "../util/investment.js";
 export default function Results({ inputData }) {
 // Ensure calculatedResults is initialized as an empty array
 const [calculatedResults, setCalculatedResults] = useState([]);
+const [initialInvestment, setInitialInvestment] = useState(0)
 
 useEffect(() => {
     if (inputData) {
-    const result = calculateInvestmentResults(inputData); // Call utility function
-    // Set calculatedResults, ensuring it's an array or empty array as fallback
+    const result = calculateInvestmentResults(inputData); 
+    const initialInv = result[0].valueEndOfYear - result[0].interest - result[0].annualInvestment
+    
+    setInitialInvestment(initialInv)
     setCalculatedResults(result);
     }
 }, [inputData]);
 
-// console.log(calculatedResults);
+
 
 
 return (
@@ -29,20 +32,22 @@ return (
         </tr>
         </thead>
         <tbody>
-        {calculatedResults && calculatedResults.length > 0 ? (
-            calculatedResults.map((item, index) => (
-            <tr key={index}>
-                <td>{item.year}</td>
-                <td>{item.interest}</td>
-                <td>{formatter.format(item.valueEndOfTheYear)}</td>
-                <td>{formatter.format(item.annualInvestment)}</td>
-            </tr>
-            ))
-        ) : (
-            <tr>
-            <td>No data available</td>
-            </tr>
-        )}
+        {calculatedResults.map((item) => {
+
+            const totalInterest = item.valueEndOfYear - item.annualInvestment * item.year - initialInvestment;
+            const totalAmountInveste = item.valueEndOfYear - totalInterest
+
+            return (
+                <tr key={item.year}>
+                    <td>{item.year}</td>
+                    <td>{formatter.format(item.valueEndOfYear)}</td>
+                    <td>{formatter.format(item.interest)}</td>
+                    <td>{formatter.format(totalInterest)}</td>
+                    <td>{formatter.format(totalAmountInveste)}</td>
+                </tr>
+            )
+        })}
+                
         </tbody>
     </table>
     </div>
