@@ -1,7 +1,9 @@
+import InputBox from "./InputBox.jsx"
+
 export default function InputGroup() {
     return (
         <>
-            <h1>Input</h1>
+            <InputBox/>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import Header from "./components/Header.jsx"
-import InputGroup from "./components/InputGroup.jsx"
+import InputGroup from "./components/InputSection.jsx"
 import Results from "./components/Results.jsx"
 
 function App() {
