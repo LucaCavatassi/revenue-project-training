@@ -24,7 +24,9 @@ export function calculateInvestmentResults({
     });
   }
 
+  console.log(annualData);
   return annualData;
+  
 }
 
 // The browser-provided Intl API is used to prepare a formatter object
