@@ -1,13 +1,20 @@
+import { useState } from "react"
 import Header from "./components/Header.jsx"
-import InputGroup from "./components/InputSection.jsx"
+import InputBox from "./components/InputBox.jsx"
 import Results from "./components/Results.jsx"
 
 function App() {
+  const [inputData, setInputData] = useState();
+
+  function handleInput(data) {
+    setInputData(data);
+  }
+  
   return (
     <>
       <Header/>
-      <InputGroup/>
-      <Results/>
+      <InputBox sendDataToParent={handleInput}/>
+      <Results inputData={inputData}/>
     </>
   )
 }
