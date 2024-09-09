@@ -10,11 +10,15 @@ function App() {
     setInputData(data);
   }
   
+  
+  const inputValid = inputData?.duration > 0
+
   return (
     <>
       <Header/>
       <InputBox sendDataToParent={handleInput}/>
-      <Results inputData={inputData}/>
+      { inputValid ? <Results inputData={inputData}/> : 
+        <p className="center"> Please enter postive numbers. </p>}
     </>
   )
 }
